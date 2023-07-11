@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BoardList extends Model
+class Card extends Model
 {
     use HasFactory;
 
@@ -16,13 +16,13 @@ class BoardList extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function list()
+    {
+        return $this->belongsTo(BoardList::class);
+    }
+
     public function board()
     {
         return $this->belongsTo(Board::class);
-    }
-
-    public function cards()
-    {
-        return $this->hasMany(Card::class);
     }
 }

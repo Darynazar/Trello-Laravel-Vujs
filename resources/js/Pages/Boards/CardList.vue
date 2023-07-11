@@ -3,37 +3,18 @@
 
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import AuthenticatedLayoutVue from "@/Layouts/AuthenticatedLayout.vue";
+// import BoardNameForm from "./Boards/BoardNameForm.vue";
+// import CreateBoardListForm from "./Boards/CreateBoardListForm.vue";
 import BoardNameForm from "./BoardNameForm.vue";
 import CreateBoardListForm from "./CreateBoardListForm.vue";
+
+
 const props = defineProps({
-  board:Object
+    list: Object
 });
-
 </script>
-
 <template>
-  <AuthenticatedLayoutVue>
-        <div class="flex flex-col h-full bg-blue-500">
-          <div class="shrink-0 flex flex-wrap justify-between item-center p-4">
-            <!-- <h1 class="text-2xl text- font-bold">{{ props.board.name }}</h1> -->
-            <BoardNameForm :board="board"></BoardNameForm>
-            <div class="">
-              <button
-                class="inline-flex item-center bg-white/10 hover:bg-white/20 py-2 font-medium text-sm text-white rounded-md"
-              >
-                <DotsHorizontalIcon class="w-5 h-5" />
-                <span class="ml-1">Setting</span>
-              </button>
-            </div>
-          </div>
-          <div class="flex-1 overflow-x-auto">
-            <div class="inline-flex h-full items-start px-4 pb-4 space-x-4">
-              <div
-              v-for="list in board.lists"
-                :key="list.id"
-                
-                class="w-72 bg-gray-200 max-h-full flex flex-col rounded-md"
-              >
+    <div>
                 <div class="flex item-center justify-between px-3 py-2">
                   <h3 class="text-sm font-semibold text-gray-700">{{ list.name }}</h3>
                   <button
@@ -89,10 +70,11 @@ const props = defineProps({
                   <div class="px-3 flex-1 overflow-y-auto">
                     <ul class="space-y-3">
                       <li
-                        v-for="item in Array.from({ length: 100 })"
+                        v-for="card in list.cards"
+                        :key="card.id"
                         class="group relative bg-white p-3 shadow rounded-md border-b border-gray-300 hover:bg-gray-50"
                       >
-                        <a href="#" class="text-sm">card item</a>
+                        <a href="#" class="text-sm">{{ card.title }}</a>
                         <button
                           class="hidden absolute top-1 right-1 w-8 h-8 bg-gray-50 group-hover:grid place-content-center rounded-md text-gray-600 hover:text-black hover:bg-gray-200"
                         >
@@ -124,13 +106,5 @@ const props = defineProps({
                 </div>
               </div>
 
-              <div class="w-72">
-               <CreateBoardListForm :board="board"/>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-   
-  </AuthenticatedLayoutVue>
 </template>
+
