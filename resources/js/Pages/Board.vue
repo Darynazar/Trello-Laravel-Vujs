@@ -3,15 +3,20 @@
 
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import AuthenticatedLayoutVue from "@/Layouts/AuthenticatedLayout.vue";
+import BoardNameForm from "./BoardNameForm.vue";
+import CreateBoardListForm from "./CreateBoardListForm.vue";
+const props = defineProps({
+  board:Object
+});
+
 </script>
 
 <template>
   <AuthenticatedLayoutVue>
-
-     
         <div class="flex flex-col h-full bg-blue-500">
-          <div class="shrink-0 flex justify-between item-center p-4">
-            <h1 class="text-2xl text- font-bold">Board title</h1>
+          <div class="shrink-0 flex flex-wrap justify-between item-center p-4">
+            <!-- <h1 class="text-2xl text- font-bold">{{ props.board.name }}</h1> -->
+            <BoardNameForm :board="board"></BoardNameForm>
             <div class="">
               <button
                 class="inline-flex item-center bg-white/10 hover:bg-white/20 py-2 font-medium text-sm text-white rounded-md"
@@ -24,11 +29,13 @@ import AuthenticatedLayoutVue from "@/Layouts/AuthenticatedLayout.vue";
           <div class="flex-1 overflow-x-auto">
             <div class="inline-flex h-full items-start px-4 pb-4 space-x-4">
               <div
-                v-for="item in Array.from({ length: 7 })"
+              v-for="list in board.lists"
+                :key="list.id"
+                
                 class="w-72 bg-gray-200 max-h-full flex flex-col rounded-md"
               >
                 <div class="flex item-center justify-between px-3 py-2">
-                  <h3 class="text-sm font-semibold text-gray-700">BackLog</h3>
+                  <h3 class="text-sm font-semibold text-gray-700">{{ list.name }}</h3>
                   <button
                     class="hover:bg-gray-300 w-8 h-8 rounded-md grid place-content-center"
                   >
@@ -118,12 +125,7 @@ import AuthenticatedLayoutVue from "@/Layouts/AuthenticatedLayout.vue";
               </div>
 
               <div class="w-72">
-                <button
-                  class="flex items-center bg-white/10 w-full hover:bg-white/20 text-white p-2 text-sm font-medium rounded-md"
-                >
-                  <PlusIcons class="w-5 h-5" />
-                  <span class="ml-1">Add List</span>
-                </button>
+               <CreateBoardListForm :board="board"/>
               </div>
             </div>
           </div>

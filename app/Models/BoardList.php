@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Board extends Model
+class BoardList extends Model
 {
     use HasFactory;
 
@@ -16,8 +16,8 @@ class Board extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function lists()
+    public function board()
     {
-        return $this->hasMany(BoardList::class);
+        return $this->belongsTo(Board::class);
     }
 }

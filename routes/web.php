@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\BoardListController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +28,16 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function() {
-    Route::get('/board', [BoardController::class, 'show'])->name('boards.show');
+    Route::get('/boards/{id}', [BoardController::class, 'show'])->name('boards.show');
+
+    Route::put('/boards/{id}', [BoardController::class, 'update'])->name('boards.update');
 
     Route::get('/dashboard', [BoardController::class, 'index'])->name('dashboard');    
+    Route::post('/board', [BoardController::class, 'store'])->name('boards.store');    
+
+    Route::post('/boards/{board}/lists', [BoardListController::class, 'store'])
+              ->name('boardList.store');    
+
 });
 
 Route::middleware('auth')->group(function () {
