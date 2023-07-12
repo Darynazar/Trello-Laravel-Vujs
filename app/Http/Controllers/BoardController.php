@@ -42,7 +42,6 @@ class BoardController extends Controller
 
     public function update(Board $board)
     {
-        return 'ok';
         $data = request()->validate([
             'name' => 'required|max:255'
         ]);

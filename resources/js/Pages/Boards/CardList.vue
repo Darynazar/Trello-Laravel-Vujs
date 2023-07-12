@@ -7,11 +7,20 @@ import AuthenticatedLayoutVue from "@/Layouts/AuthenticatedLayout.vue";
 // import CreateBoardListForm from "./Boards/CreateBoardListForm.vue";
 import BoardNameForm from "./BoardNameForm.vue";
 import CreateBoardListForm from "./CreateBoardListForm.vue";
-
+import CardListItemCreateForm from "./CardListItemCreateForm.vue";
+import { ref } from "vue";
+import CardListItem from "./CardListItem.vue";
 
 const props = defineProps({
     list: Object
 });
+
+const listRef = ref();
+
+function onCardCreated() {
+  listRef.value.scrollTop = listRef.value.scrollHeight;
+}
+console.log(props.list.name)
 </script>
 <template>
     <div>
@@ -67,22 +76,24 @@ const props = defineProps({
                   </Menu>
                 </div>
                 <div class="pb-3 pb-3 flex flex-col overflow-hidden">
-                  <div class="px-3 flex-1 overflow-y-auto">
+                  <div 
+                  ref="listRef"
+                  class="px-3 flex-1 overflow-y-auto">
                     <ul class="space-y-3">
-                      <li
+                      <CardListItem
                         v-for="card in list.cards"
                         :key="card.id"
+                        :card="card"
                         class="group relative bg-white p-3 shadow rounded-md border-b border-gray-300 hover:bg-gray-50"
-                      >
-                        <a href="#" class="text-sm">{{ card.title }}</a>
+                      />
+                        <!-- <a href="#" class="text-sm">{{ card.title }}</a>
                         <button
                           class="hidden absolute top-1 right-1 w-8 h-8 bg-gray-50 group-hover:grid place-content-center rounded-md text-gray-600 hover:text-black hover:bg-gray-200"
                         >
                           <PensilIcon class="w-5 h-5" />
-                        </button>
-                      </li>
+                        </button> -->
 
-                      <li
+                      <!-- <li
                         class="group relative bg-white p-3 shadow rounded-md border-b border-gray-300 hover:bg-gray-50"
                       >
                         <a href="#" class="text-sm">card item</a>
@@ -91,18 +102,15 @@ const props = defineProps({
                         >
                           <PensilIcon class="w-5 h-5" />
                         </button>
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
                 </div>
 
                 <div class="px-3 mt-3">
-                  <button
-                    class="flex-content item-center p-2 text-sm font-mediume text-gray-600 hover:text-black hover:bg-gray-300 w-full rounded-md"
-                  >
-                    <PlusIcon class="h-5 w-5" />
-                    <span class="ml-1">Add cards</span>
-                  </button>
+                  <CardListItemCreateForm 
+                  @created="onCardCreated()"
+                  :list="list"/>
                 </div>
               </div>
 

@@ -37,6 +37,7 @@ function onSubmit() {
 <template>
 
     <form 
+    @keydown.esc="isShowingForm = false"
      ref="formRef"
      @submit.prevent="onSubmit()"
      v-if="isShowingForm"
