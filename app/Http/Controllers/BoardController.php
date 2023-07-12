@@ -45,7 +45,6 @@ class BoardController extends Controller
         $data = request()->validate([
             'name' => 'required|max:255'
         ]);
-        return $board;
         // $board = Board::find($id);
         $board->update($data);
         return redirect()->back();

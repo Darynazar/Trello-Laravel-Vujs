@@ -29,9 +29,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => ['auth', 'verified']], function() {
-    Route::get('/boards/{id}', [BoardController::class, 'show'])->name('boards.show');
+    Route::get('/boards/{board}', [BoardController::class, 'show'])->name('boards.show');
 
-    Route::put('/boards/{id}', [BoardController::class, 'update'])->name('boards.update');
+    Route::put('/boards/{board}', [BoardController::class, 'update'])->name('boards.update');
 
     Route::get('/dashboard', [BoardController::class, 'index'])->name('dashboard');    
     Route::post('/board', [BoardController::class, 'store'])->name('boards.store');    

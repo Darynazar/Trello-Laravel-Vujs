@@ -29,6 +29,7 @@ console.log(props.list.name)
                   <button
                     class="hover:bg-gray-300 w-8 h-8 rounded-md grid place-content-center"
                   >
+                  
                     <DotsHorizontalIcon class="w-5 h-5" />
                   </button>
 

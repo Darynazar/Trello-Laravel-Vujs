@@ -8,6 +8,7 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 const props = defineProps({
   dashboard: Array,
 });
+console.log(props.dashboard[1].id);
 
 const form =useForm({
   name: '',
@@ -82,11 +83,12 @@ function onSubmit(closePopover) {
             :key="board.id"
             class="relative bg-blue-600 hover:bg-blue-700 rounded-md min-h-[7rem]"
           >
-            <!-- <Link
+          <h3 class="text-white w-full m-4">{{ board.name }}</h3>
+            <Link
               class="absolute inset-0 p-2 text-white text-lg font-bold"
               :href="route('boards.show', { board: board.id })"
             >
-            </Link> -->
+            </Link> 
           </li>
         </ul>
       </div>
