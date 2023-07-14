@@ -1,10 +1,10 @@
 import './bootstrap';
 import '../css/app.css';
-
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
@@ -21,3 +21,17 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        { path: '/', component: ProductList },
+        { path: '/products/create', component: ProductForm },
+        { path: '/products/:id', component: Product },
+        { path: '/products/:id/edit', component: ProductForm },
+    ]
+});
+
+const app = createApp(App);
+app.use(router);
+app.mount('#app');

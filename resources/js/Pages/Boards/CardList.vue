@@ -39,7 +39,7 @@ console.log(props.list.name)
                     >
                       <img
                         class="w-10 h-10 inline rounded-full"
-                        src="https://pbs.twimg.com/profile_images/1333896976602193922/MtWztkxt_400x400.jpg"
+                        src="https://avatars.githubusercontent.com/u/98821099?s=48&v=4"
                         alt=""
                       />
                     </MenuButton>

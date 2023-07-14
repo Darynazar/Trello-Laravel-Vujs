@@ -8,6 +8,7 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 const props = defineProps({
   dashboard: Array,
 });
+
 console.log(props.dashboard[1].id);
 
 const form =useForm({
