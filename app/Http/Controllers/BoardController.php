@@ -11,9 +11,8 @@ class BoardController extends Controller
 
     public function index()
     {
-        return [
-            'dashboard' => Board::with('lists.cards')->first()
-        ];
+        return
+            Board::with('lists.cards')->first();
     }
 
 

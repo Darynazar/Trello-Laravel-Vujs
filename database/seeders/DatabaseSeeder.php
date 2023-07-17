@@ -24,20 +24,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $boards = Board::factory(10)->for($user)->create();
-    
+
         foreach($boards as $board) {
-            $boardList = BoardList::factory()->create([
+            $boardLists = BoardList::factory(5)->create([
                 'board_id' => $board->id,
                 'user_id' => $user->id
             ]);
 
-            Card::factory(50)->create([
+            foreach($boardLists as $boardList)
+            Card::factory(10)->create([
                 'board_id' => $board->id,
                 'user_id' => $user->id,
                 'board_list_id' => $boardList->id
             ]);
         }
-    
-    
+
+
     }
 }
