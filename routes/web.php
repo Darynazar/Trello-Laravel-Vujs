@@ -27,22 +27,22 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-
-Route::group(['middleware' => ['auth', 'verified']], function() {
-    Route::get('/boards/{board}', [BoardController::class, 'show'])->name('boards.show');
-
-    Route::put('/boards/{board}', [BoardController::class, 'update'])->name('boards.update');
-
-    Route::get('/dashboard', [BoardController::class, 'index'])->name('dashboard');    
-    Route::post('/board', [BoardController::class, 'store'])->name('boards.store');    
-
-    Route::post('/boards/{board}/lists', [BoardListController::class, 'store'])
-              ->name('boardList.store');
-
-    Route::post('/cards', [CardController::class, 'store'])->name('cards.store');    
-    Route::put('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
-    
-});
+//
+//Route::group(['middleware' => ['auth', 'verified']], function() {
+//    Route::get('/boards/{board}', [BoardController::class, 'show'])->name('boards.show');
+//
+//    Route::put('/boards/{board}', [BoardController::class, 'update'])->name('boards.update');
+//
+//    Route::get('/dashboard', [BoardController::class, 'index'])->name('dashboard');
+//    Route::post('/board', [BoardController::class, 'store'])->name('boards.store');
+//
+//    Route::post('/boards/{board}/lists', [BoardListController::class, 'store'])
+//              ->name('boardList.store');
+//
+//    Route::post('/cards', [CardController::class, 'store'])->name('cards.store');
+//    Route::put('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
+//
+//});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

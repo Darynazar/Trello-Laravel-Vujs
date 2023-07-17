@@ -11,12 +11,12 @@ class BoardController extends Controller
 
     public function index()
     {
-        return Inertia::render('Boards/Dashboard', [
-            'dashboard' => auth()->user()->boards
-        ]);
+        return [
+            'dashboard' => Board::with('lists.cards')->first()
+        ];
     }
 
-  
+
 
     public function store()
     {
