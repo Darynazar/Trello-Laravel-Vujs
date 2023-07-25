@@ -22,20 +22,27 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => ['api']], function() {
+Route::group(['middleware' => ['api']], function () {
+    //dashboard show all board thats for users
+    Route::get('/dashboard', [BoardController::class, 'index'])->name('dashboard');
+    //board Shows
     Route::get('/boards/{board}', [BoardController::class, 'show'])->name('boards.show');
-
+    //store board
+    Route::post('/board', [BoardController::class, 'store'])->name('boards.store');
+    //board Update
     Route::put('/boards/{board}', [BoardController::class, 'update'])->name('boards.update');
 
-    Route::get('/dashboard', [BoardController::class, 'index'])->name('dashboard');
-    Route::post('/board', [BoardController::class, 'store'])->name('boards.store');
-
+    //store list
     Route::post('/boards/{board}/lists', [BoardListController::class, 'store'])
         ->name('boardList.store');
+    //update list
+    Route::put('/boardList/{list}', [BoardListController::class, 'update'])
+        ->name('boardList.update');
 
+    //store card
     Route::post('/cards', [CardController::class, 'store'])->name('cards.store');
+    //update card
     Route::put('/cards/{card}', [CardController::class, 'update'])->name('cards.update');
-
 });
 
 Route::group([

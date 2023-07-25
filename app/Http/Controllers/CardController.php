@@ -16,7 +16,7 @@ class CardController extends Controller
         //     'title' => 'required'
         // ]);
         Card::create([
-            'user_id' => auth()->id(),
+            'user_id' => 1,
             'title' => request('title'),
             'board_id' => request('board_id'),
             'board_list_id' => request('board_list_id')

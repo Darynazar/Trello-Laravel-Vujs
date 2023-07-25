@@ -24,7 +24,7 @@ class BoardController extends Controller
         ]);
 
         Board::create([
-            'user_id' => auth()->id(),
+            'user_id' => 1,
             'name' => request('name')
         ]);
         return redirect()->back();
@@ -33,10 +33,10 @@ class BoardController extends Controller
     public function show($id)
     {
         $board = Board::find($id);
-        $board->load('lists.cards');
-        return Inertia::render('Boards/Show', [
-            'board' => $board
-        ]);
+        return $board->load('lists.cards');
+        // return Inertia::render('Boards/Show', [
+        //     'board' => $board
+        // ]);
     }
 
     public function update(Board $board)
