@@ -9,7 +9,7 @@ class CardController extends Controller
 {
     public function store(Request $request)
     {
-        
+
         // request()->validate([
         //     'name' => 'required',
         //     'card_list_id' => 'required',
@@ -21,17 +21,17 @@ class CardController extends Controller
             'board_id' => request('board_id'),
             'board_list_id' => request('board_list_id')
         ]);
-        return redirect()->back();
+        return ['message'=>'success'];
     }
 
 
     public function update(Card $card)
     {
-        $data = request()->validate([
-            'title' => 'required|max:255'
-        ]);
+//        $data = request()->validate([
+//            'title' => 'required|max:255'
+//        ]);
         // $board = Board::find($id);
-        $card->update($data);
-        return redirect()->back();
+        $card->update(request()->all());
+        return ['message'=>'success'];
     }
 }
