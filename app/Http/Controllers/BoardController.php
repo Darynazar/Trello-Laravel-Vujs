@@ -12,7 +12,9 @@ class BoardController extends Controller
     public function index()
     {
         return
-            Board::with('lists.cards')->first();
+            // Board::with('lists.cards')->first();
+            Board::all();
+
     }
 
 
@@ -20,11 +22,12 @@ class BoardController extends Controller
     public function store()
     {
         request()->validate([
-            'name' => 'required'
+            'name' => 'required',
+            'user_id' => 'required'
         ]);
 
         Board::create([
-            'user_id' => 1,
+            'user_id' => request('user_id'),
             'name' => request('name')
         ]);
         return redirect()->back();
