@@ -30,7 +30,7 @@ class BoardController extends Controller
             'user_id' => request('user_id'),
             'name' => request('name')
         ]);
-        return redirect()->back();
+        return response(true);
     }
 
     public function show($id)
