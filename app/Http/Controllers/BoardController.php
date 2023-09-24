@@ -14,7 +14,6 @@ class BoardController extends Controller
         return
             // Board::with('lists.cards')->first();
             Board::all();
-
     }
 
 
@@ -51,6 +50,11 @@ class BoardController extends Controller
         $board->update($data);
         return redirect()->back();
     }
-
-
+    public function destroy(Board $board)
+    {
+        $board->delete();
+        return response()->json([
+            'status' => 200
+        ]);
+    }
 }

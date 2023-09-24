@@ -31,6 +31,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post('/board', [BoardController::class, 'store'])->name('boards.store');
     //board Update
     Route::put('/boards/{board}', [BoardController::class, 'update'])->name('boards.update');
+    //delete
+    Route::delete('/boards/{board}', [BoardController::class, 'destroy'])->name('boards.delete');
 
     //store list
     Route::post('/boards/{board}/lists', [BoardListController::class, 'store'])
